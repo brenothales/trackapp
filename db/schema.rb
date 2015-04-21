@@ -14,25 +14,25 @@
 ActiveRecord::Schema.define(version: 20130227192935) do
 
   create_table "logs", force: true do |t|
-    t.integer  "task_id"
+    t.integer  "subtask_id"
     t.datetime "start"
     t.datetime "stop"
   end
 
-  add_index "logs", ["task_id"], name: "index_logs_on_task_id"
+  add_index "logs", ["subtask_id"], name: "index_logs_on_subtask_id"
 
-  create_table "projects", force: true do |t|
-    t.string "name"
-  end
-
-  create_table "tasks", force: true do |t|
+  create_table "subtasks", force: true do |t|
     t.string   "name"
     t.boolean  "done"
-    t.integer  "project_id"
+    t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id"
+  add_index "subtasks", ["task_id"], name: "index_subtasks_on_task_id"
+
+  create_table "tasks", force: true do |t|
+    t.string "name"
+  end
 
 end

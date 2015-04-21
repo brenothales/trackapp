@@ -1,13 +1,14 @@
 <% if @task.valid? %>
 
-$('.taskpane').prepend '<%= j(render @task) %>'
+$('.tabs li').removeClass 'last'
+$('.tabs').append '<li class=\"last\"><%= j(render @task) %></li>'
 notice $('.task-<%= @task.id %>'), '#eaeaae'
-$('.task-create #name').val ''
+$('.tabs input').val ''
 
 <% else %>
 
-notice $('.task-create #name'), '#ff6666'
-$('.task-create #name').val ''
-$('.task-create #name').attr 'placeholder', '<%= @task.errors[:name].first %>'
+notice $('.tabs input'), '#ff6666'
+$('.tabs input').val ''
+$('.tabs input').attr 'placeholder', '<%= @task.errors[:name].first %>'
 
 <% end %>

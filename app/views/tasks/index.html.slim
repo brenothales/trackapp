@@ -1,0 +1,19 @@
+ul.tabs
+  li
+    = form_tag('/tasks', method: :post, remote: true) do
+      = text_field_tag(:name, nil, placeholder: 'New task')
+  - @tasks.each_with_index do |task, index|
+    li[class="#{'active' if index == 0}#{' last' if index == @tasks.size-1}"]
+      = render task
+
+.task-time= format_logged(@task.logged)
+
+= link_to 'delete task', tasks_path(id: @task.id, format: 'js'), { class: 'task-delete', remote: true, method: :delete }
+
+.subtask-create
+  = form_tag('/subtasks', method: :post, remote: true) do
+    = text_field_tag(:name, nil, placeholder: 'New task')
+    = hidden_field_tag(:task_id, "#{@tasks.empty? ? 0 : @tasks.first.id}")
+
+.taskpane
+  = render @task.subtasks

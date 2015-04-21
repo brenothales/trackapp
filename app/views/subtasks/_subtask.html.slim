@@ -1,0 +1,28 @@
+div[class="subtask subtask-#{subtask.id} #{'subtask-work' if subtask.work?} #{'subtask-done' if subtask.done?}"]
+
+  .time #{format_logged(subtask.logged)}
+
+  - if subtask.work?
+    = link_to 'stop', stop_subtask_path(subtask), { class: 'subtask-action action-stop', remote: true }
+
+  - if subtask.done?
+    = link_to 'delete', subtask, { class: 'subtask-action action-delete', remote: true, method: :delete }
+
+  - if !subtask.done? && !subtask.work?
+    = link_to 'start', start_subtask_path(subtask), { class: 'subtask-action action-start', remote: true }
+
+    = link_to 'done', finish_subtask_path(subtask), { class: 'subtask-action action-done', remote: true }
+
+  .subtask-title
+    - if subtask.work?
+      span.icon &#9874;
+    - elsif subtask.done?
+      span.icon &#10003;
+    - else
+      span.icon &#9417;
+    span #{subtask.name}
+    - if !subtask.logs.empty?
+      span.show-logs  &#8609;
+
+  div[class="subtask-logs logs-#{subtask.id}"]
+    = render subtask.logs

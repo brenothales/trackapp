@@ -4,8 +4,8 @@
 
 @toggable = (parent) ->
   parent.find('.show-logs').on 'click', ->
-    $(this).parents('.task:first').find('.task-logs').toggle 'slow'
+    $(this).parents('.subtask:first').find('.subtask-logs').toggle 'slow'
 
 $ ->
-  for task in $('.task')
-    toggable $(task)
+  for subtask in $('.subtask')
+    toggable $(subtask)

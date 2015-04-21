@@ -1,30 +1,24 @@
 class TasksController < ApplicationController
 
+  def index
+    @tasks = Task.all
+    @task = Task.includes(subtasks: :logs).first
+    @task ||= Task.create(name: 'Demo Task')
+  end
+
+  def show
+    @task = Task.includes(subtasks: :logs).find(params[:id])
+  end
+
   def create
-    @task = Project.find(params[:project_id]).tasks.create(name: params[:name])
+    @task = Task.create(name: params[:name])
+    @tasks = Task.all
   end
 
   def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
-  end
-
-  def finish
-    @task = Task.find(params[:id])
-    @task.update(done: true)
-    render :refresh
-  end
-
-  def start
-    @task = Task.find(params[:id])
-    @log = Log.create(task: @task, start: Time.now)
-    render :refresh
-  end
-
-  def stop
-    @task = Task.find(params[:id])
-    @log = @task.logs.first.update(stop: Time.now)
-    render :refresh
+    @deleted = Task.find(params[:id]).destroy
+    @task = Task.includes(subtasks: :logs).first
+    render :show
   end
 
 end

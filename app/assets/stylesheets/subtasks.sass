@@ -1,0 +1,73 @@
+.taskpane, .task-create
+  margin-left: 15%
+
+.subtask
+  border: 1px solid $grey-light
+  border-bottom: 2px solid $grey-light
+  padding: 8px
+  margin: 5px
+
+.subtask:hover
+  border-bottom: 2px solid $grey-medium
+
+.subtask-work
+  border-bottom-color: $work
+  &:hover
+    border-bottom-color: $work
+
+.subtask-done, .subtask-delete
+  color: $grey-medium
+  border-bottom-color: $done
+  &:hover
+    border-bottom-color: $done
+
+.time, .subtask-action
+  float: right
+  font-weight: bold
+
+.time, .action-start
+  border-left: 1px solid $grey-light
+  margin-left: 8px
+  padding-left: 8px
+
+.subtask-action
+  text-decoration: none
+
+.action-start
+  color: $start
+
+.action-stop
+  color: $stop
+
+.action-done, a.action-delete
+  color: $grey-medium
+  font-weight: normal
+
+.subtask-title
+  font-weight: bold
+  color: $grey-dark
+
+.subtask-title
+  .icon
+    color: $grey-light
+    padding-right: 8px
+
+  .show-logs
+    color: $grey-light
+    padding-right: 50px
+
+  &:hover
+    color: $grey-dark
+
+.subtask-logs
+  border-top: 1px solid #eee
+  display: none
+  margin-top: 5px
+
+.subtask-create form input
+  border: 1px solid $grey-medium
+  margin: 5px
+  padding: 8px
+  width: 50%
+  box-sizing: border-box
+  font-weight: bold

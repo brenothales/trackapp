@@ -1,73 +1,57 @@
-.taskpane, .task-create
-  margin-left: 15%
+ul.tabs
+  border-right: 1px solid $grey-medium
+  float: left
+  margin: 0
+  padding: 10px 0px
+  width: 14%
+
+li
+  list-style: none
 
 .task
-  border: 1px solid $grey-light
-  border-bottom: 2px solid $grey-light
-  padding: 8px
-  margin: 5px
-
-.task:hover
-  border-bottom: 2px solid $grey-medium
-
-.task-work
-  border-bottom-color: $work
-  &:hover
-    border-bottom-color: $work
-
-.task-done, .task-delete
-  color: $grey-medium
-  border-bottom-color: $done
-  &:hover
-    border-bottom-color: $done
-
-.time, .task-action
-  float: right
-  font-weight: bold
-
-.time, .action-start
+  border-top: 1px solid $grey-light
   border-left: 1px solid $grey-light
-  margin-left: 8px
-  padding-left: 8px
-  
-.task-action
-  text-decoration: none
-
-.action-start
-  color: $start
-
-.action-stop
-  color: $stop
-
-.action-done, a.action-delete
+  border-right: none
+  padding: 8px
+  display: block
   color: $grey-medium
-  font-weight: normal
-
-.task-title
+  text-decoration: none
   font-weight: bold
+  margin-left: 3px
+  background-color: $background
+
+ul.tabs a:hover
+  margin-left: -3px
+
+li.active .task
+  margin-left: -3px
+  margin-right: -1px
+  padding-bottom: 10px
+  border: 1px solid $grey-medium
+  border-right: none
   color: $grey-dark
 
-.task-title 
-  .icon
-    color: $grey-light
-    padding-right: 8px
+li.last .task
+  border-bottom: 1px solid $grey-light
 
-  .show-logs
-    color: $grey-light
-    padding-right: 50px
-  
-  &:hover
-    color: $grey-dark
-
-.task-logs
-  border-top: 1px solid #eee
-  display: none
-  margin-top: 5px
-
-.task-create form input
+li form input
   border: 1px solid $grey-medium
-  margin: 5px
+  border-right: none
+  margin: 0px
   padding: 8px
-  width: 50%
+  width: 100%
   box-sizing: border-box
   font-weight: bold
+
+.task-delete, .task-time
+  float: right
+  margin: 10px 5px
+  text-decoration: none
+  color: $grey-medium
+
+.task-time
+  font-size: 150%
+  font-weight: bold
+
+.task-delete
+  margin-top: 15px
