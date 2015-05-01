@@ -1,0 +1,34 @@
+<div class="subtask subtask-<%= subtask.id %> <%='subtask-work' if subtask.work? %> <%='subtask-done' if subtask.done? %>"> 
+
+<div class="time"> <%=format_logged(subtask.logged) %></div>
+
+<% if subtask.work? %>
+<%= link_to 'stop', stop_subtask_path(subtask),  class: 'subtask-action action-stop', remote: true  %>
+<% end -%>
+<% if subtask.done? %>
+<%= link_to 'delete', subtask,  class: 'subtask-action action-delete', remote: true, method: :delete  %>
+<% end -%>
+
+<% if !subtask.done? && !subtask.work? %>
+<%= link_to 'start', start_subtask_path(subtask),  class: 'subtask-action action-start', remote: true  %>
+
+<%= link_to 'done', finish_subtask_path(subtask),  class: 'subtask-action action-done', remote: true  %>
+<% end -%>
+
+<div class="subtask-title">
+  <%- if subtask.work?  %>
+  <span class="icon">&#9874;</span> 
+  <% elsif subtask.done? %>
+  <span class="icon">&#10003;</span>
+  <% else %>
+  <span class="icon">&#9417;</span>
+  <% end -%>
+  <span><%=subtask.name %></span>
+  <% if !subtask.logs.empty? %>
+  <span class="show-logs">&#8609;</span>
+  <% end -%>
+</div>    
+<div class="subtask-logs logs-<%=subtask.id %>">
+  <%= render subtask.logs %>
+</div>
+</div>
